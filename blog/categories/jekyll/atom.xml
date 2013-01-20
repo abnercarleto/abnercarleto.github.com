@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Abner Carleto]]></title>
-  <link href="http://abnercarleto.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: jekyll | Abner Carleto]]></title>
+  <link href="http://abnercarleto.github.com/blog/categories/jekyll/atom.xml" rel="self"/>
   <link href="http://abnercarleto.github.com/"/>
   <updated>2013-01-20T20:48:08-02:00</updated>
   <id>http://abnercarleto.github.com/</id>
@@ -26,12 +26,11 @@
 
 <h2>Mais um blog com p&aacute;ginas est&aacute;ticas &eacute; muito trabalhoso.</h2>
 
-<p>Se voc&ecirc; quiser criar o seu blog &#8220;na m&atilde;o&#8221;, realmente vai ser muito trabalhoso.</p>
+<p>Se voc&ecirc; quiser criar o seu blog "na m&atilde;o", realmente vai ser muito trabalhoso.</p>
 
 <p>Atualmente exitem ferramentas que facilitam esse trabalho. O <a href="http://jekyllrb.com/" title="Jekyll">jekyll</a> &eacute; um gerador de blog est&aacute;tico, e o <a href="http://octopress.org/" title="Octopress">octopress</a> &eacute; um framework para blog usando o jekyll.</p>
 
-<blockquote><p>Octopress is a framework designed by Brandon Mathis for Jekyll, the blog aware static site generator powering Github Pages. To start blogging with Jekyll, you have to write your own HTML templates, CSS, Javascripts and set up your configuration. But with Octopress All of that is already taken care of. Simply clone or fork Octopress, install dependencies and the theme, and you’re set.</p><footer><strong>Brandon Mathis</strong> <cite><a href='http://octopress.org/blog/2011/07/23/octopress-20-surfaces/'>octopress.org/blog/2011/07/23/&hellip;</a></cite></footer></blockquote>
-
+<p><blockquote><p>Octopress is a framework designed by Brandon Mathis for Jekyll, the blog aware static site generator powering Github Pages. To start blogging with Jekyll, you have to write your own HTML templates, CSS, Javascripts and set up your configuration. But with Octopress All of that is already taken care of. Simply clone or fork Octopress, install dependencies and the theme, and you’re set.</p><footer><strong>Brandon Mathis</strong> <cite><a href='http://octopress.org/blog/2011/07/23/octopress-20-surfaces/'>octopress.org/blog/2011/07/23/&hellip;</a></cite></footer></blockquote></p>
 
 <p>O <a href="http://octopress.org/" title="Octopress">octopress</a> possui suporte a scripts para deploy no <a href="http://pages.github.com/" title="Github Pages">github pages</a>, o que facilita muito o trabalho. Vale a pena conferir.</p>
 ]]></content>
