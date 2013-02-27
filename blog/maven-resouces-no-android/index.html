@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Github pages - Abner Carleto</title>
+  <title>Maven resouces no Android - Abner Carleto</title>
   <meta name="author" content="Abner Carleto">
 
   
-  <meta name="description" content="Resolvi criar um blog para meus estudos, experimentos e projetos opensource, e nada melhor para hospedar do que o github pages. O guithub pages não é &hellip;">
+  <meta name="description" content="Como muitos sabem é possivel criar projetos para android usando o maven. Mais quando precisei utilizar o plugin resources nava funcionou. Depois de &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://abnercarleto.github.com/blog/github-pages/">
+  <link rel="canonical" href="http://abnercarleto.github.com/blog/maven-resouces-no-android/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -73,7 +73,7 @@
   
   <header>
     
-      <h1 class="entry-title">Github Pages</h1>
+      <h1 class="entry-title">Maven Resouces No Android</h1>
     
     
       <p class="meta">
@@ -89,29 +89,68 @@
   
 
 
-<time datetime="2013-01-20T20:09:00-02:00" pubdate data-updated="true">Jan 20<span>th</span>, 2013</time>
+<time datetime="2013-02-26T22:23:00-03:00" pubdate data-updated="true">Feb 26<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Resolvi criar um blog para meus estudos, experimentos e projetos opensource, e nada melhor para hospedar do que o <a href="http://pages.github.com/" title="Github Pages">github pages</a>.</p>
+<div class="entry-content"><p>Como muitos sabem é possivel criar projetos para android usando o <a href="http://code.google.com/p/maven-android-plugin/wiki/GettingStarted" title="Maven Android Plugin">maven</a>. Mais quando precisei utilizar o plugin <a href="http://maven.apache.org/plugins/maven-resources-plugin/" title="Maven Resouces Plugin">resources</a> nava funcionou.</p>
 
-<h2>O guithub pages não é só para p&aacute;ginas est&aacute;ticas?</h2>
+<p>Depois de muita pesquisa no google, nada funcionava ainda rsrs. Então conversando com o brother <a href="https://twitter.com/o_lalertom">Nycholas</a> que ja havia passado pelo mesmo problema consegui resolver. :)</p>
 
-<p>Sim. Mais quem disse que um blog precisa de p&aacute;ginas din&acirc;micas?</p>
+<p>Como h&aacute; pouco conteudo vou documentar aqui.</p>
 
-<h2>Mais um blog com p&aacute;ginas est&aacute;ticas &eacute; muito trabalhoso.</h2>
+<p>O maven resources por padr&atilde;o considera somente os diret&oacute;rios <em>src/main/resources</em> e <em>src/test/resources</em> e quando compiliado o projeto os arquivos ficam no diretorio <em>classes</em>. Para mudar isso precisamos adicionar as seguintes linhas ao <em>pom.xml</em>:</p>
 
-<p>Se voc&ecirc; quiser criar o seu blog &#8220;na m&atilde;o&#8221;, realmente vai ser muito trabalhoso.</p>
+<figure class='code'><figcaption><span>pom.xml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;build&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;resources&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;resource&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;directory&gt;</span>${project.basedir}/res<span class="nt">&lt;/directory&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;filtering&gt;</span>true<span class="nt">&lt;/filtering&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;targetPath&gt;</span>${project.build.directory}/filtered-res<span class="nt">&lt;/targetPath&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;includes&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;include&gt;</span>**/*<span class="nt">&lt;/include&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/includes&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/resource&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;resource&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;directory&gt;</span>${project.basedir}/res<span class="nt">&lt;/directory&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;filtering&gt;</span>false<span class="nt">&lt;/filtering&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;targetPath&gt;</span>${project.build.directory}/filtered-res<span class="nt">&lt;/targetPath&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;excludes&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;exclude&gt;</span>**/*<span class="nt">&lt;/exclude&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/excludes&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/resource&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/resources&gt;</span>
+</span><span class='line'><span class="nt">&lt;/build&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Atualmente exitem ferramentas que facilitam esse trabalho. O <a href="http://jekyllrb.com/" title="Jekyll">jekyll</a> &eacute; um gerador de blog est&aacute;tico, e o <a href="http://octopress.org/" title="Octopress">octopress</a> &eacute; um framework para blog usando o jekyll.</p>
 
-<blockquote><p>Octopress is a framework designed by Brandon Mathis for Jekyll, the blog aware static site generator powering Github Pages. To start blogging with Jekyll, you have to write your own HTML templates, CSS, Javascripts and set up your configuration. But with Octopress All of that is already taken care of. Simply clone or fork Octopress, install dependencies and the theme, and you’re set.</p><footer><strong>Brandon Mathis</strong> <cite><a href='http://octopress.org/blog/2011/07/23/octopress-20-surfaces/'>octopress.org/blog/2011/07/23/&hellip;</a></cite></footer></blockquote>
+<p>Onde <em>directory</em> &eacute; o diret&oacute;rio onde estão os seus resources e <em>targetPath</em> &eacute; o diret&oacute;rio onde vai ser gerado os novos resources antes de empacotar no apk.</p>
 
-
-<p>O <a href="http://octopress.org/" title="Octopress">octopress</a> possui suporte a scripts para deploy no <a href="http://pages.github.com/" title="Github Pages">github pages</a>, o que facilita muito o trabalho. Vale a pena conferir.</p>
+<p>Agora &eacute; s&oacute; brincar. Espero ter ajudado.</p>
 </div>
 
 
@@ -134,12 +173,12 @@
   
 
 
-<time datetime="2013-01-20T20:09:00-02:00" pubdate data-updated="true">Jan 20<span>th</span>, 2013</time>
+<time datetime="2013-02-26T22:23:00-03:00" pubdate data-updated="true">Feb 26<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/github-pages/'>github pages</a>, <a class='category' href='/blog/categories/jekyll/'>jekyll</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>
+    <a class='category' href='/blog/categories/android/'>android</a>, <a class='category' href='/blog/categories/maven/'>maven</a>
   
 </span>
 
@@ -148,7 +187,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://abnercarleto.github.com/blog/github-pages/" data-via="abnercarleto" data-counturl="http://abnercarleto.github.com/blog/github-pages/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://abnercarleto.github.com/blog/maven-resouces-no-android/" data-via="abnercarleto" data-counturl="http://abnercarleto.github.com/blog/maven-resouces-no-android/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -161,8 +200,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/github-pages/" title="Previous Post: Github pages">&laquo; Github pages</a>
       
-        <a class="basic-alignment right" href="/blog/maven-resouces-no-android/" title="Next Post: Maven resouces no Android">Maven resouces no Android &raquo;</a>
       
     </p>
   </footer>
@@ -271,8 +310,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://abnercarleto.github.com/blog/github-pages/';
-        var disqus_url = 'http://abnercarleto.github.com/blog/github-pages/';
+        var disqus_identifier = 'http://abnercarleto.github.com/blog/maven-resouces-no-android/';
+        var disqus_url = 'http://abnercarleto.github.com/blog/maven-resouces-no-android/';
         var disqus_script = 'embed.js';
       
     (function () {

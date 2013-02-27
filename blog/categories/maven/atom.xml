@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: maven | Abner Carleto]]></title>
+  <link href="http://abnercarleto.github.com/blog/categories/maven/atom.xml" rel="self"/>
+  <link href="http://abnercarleto.github.com/"/>
+  <updated>2013-02-26T23:39:00-03:00</updated>
+  <id>http://abnercarleto.github.com/</id>
+  <author>
+    <name><![CDATA[Abner Carleto]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Maven resouces no Android]]></title>
+    <link href="http://abnercarleto.github.com/blog/maven-resouces-no-android/"/>
+    <updated>2013-02-26T22:23:00-03:00</updated>
+    <id>http://abnercarleto.github.com/blog/maven-resouces-no-android</id>
+    <content type="html"><![CDATA[<p>Como muitos sabem é possivel criar projetos para android usando o <a href="http://code.google.com/p/maven-android-plugin/wiki/GettingStarted" title="Maven Android Plugin">maven</a>. Mais quando precisei utilizar o plugin <a href="http://maven.apache.org/plugins/maven-resources-plugin/" title="Maven Resouces Plugin">resources</a> nava funcionou.</p>
+
+<p>Depois de muita pesquisa no google, nada funcionava ainda rsrs. Então conversando com o brother <a href="https://twitter.com/o_lalertom">Nycholas</a> que ja havia passado pelo mesmo problema consegui resolver. :)</p>
+
+<p>Como h&aacute; pouco conteudo vou documentar aqui.</p>
+
+<p>O maven resources por padr&atilde;o considera somente os diret&oacute;rios <em>src/main/resources</em> e <em>src/test/resources</em> e quando compiliado o projeto os arquivos ficam no diretorio <em>classes</em>. Para mudar isso precisamos adicionar as seguintes linhas ao <em>pom.xml</em>:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>pom.xml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;build&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;resources&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span>    <span class="ni">&amp;lt;</span>resource<span class="ni">&amp;gt;</span>
+</span><span class='line'>        <span class="ni">&amp;lt;</span>directory<span class="ni">&amp;gt;</span>${project.basedir}/res<span class="ni">&amp;lt;</span>/directory<span class="ni">&amp;gt;</span>
+</span><span class='line'>        <span class="ni">&amp;lt;</span>filtering<span class="ni">&amp;gt;</span>true<span class="ni">&amp;lt;</span>/filtering<span class="ni">&amp;gt;</span>
+</span><span class='line'>        <span class="ni">&amp;lt;</span>targetPath<span class="ni">&amp;gt;</span>${project.build.directory}/filtered-res<span class="ni">&amp;lt;</span>/targetPath<span class="ni">&amp;gt;</span>
+</span><span class='line'>        <span class="ni">&amp;lt;</span>includes<span class="ni">&amp;gt;</span>
+</span><span class='line'>            <span class="ni">&amp;lt;</span>include<span class="ni">&amp;gt;</span>**/*<span class="ni">&amp;lt;</span>/include<span class="ni">&amp;gt;</span>
+</span><span class='line'>        <span class="ni">&amp;lt;</span>/includes<span class="ni">&amp;gt;</span>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>/resource<span class="ni">&amp;gt;</span>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>resource<span class="ni">&amp;gt;</span>
+</span><span class='line'>        <span class="ni">&amp;lt;</span>directory<span class="ni">&amp;gt;</span>${project.basedir}/res<span class="ni">&amp;lt;</span>/directory<span class="ni">&amp;gt;</span>
+</span><span class='line'>        <span class="ni">&amp;lt;</span>filtering<span class="ni">&amp;gt;</span>false<span class="ni">&amp;lt;</span>/filtering<span class="ni">&amp;gt;</span>
+</span><span class='line'>        <span class="ni">&amp;lt;</span>targetPath<span class="ni">&amp;gt;</span>${project.build.directory}/filtered-res<span class="ni">&amp;lt;</span>/targetPath<span class="ni">&amp;gt;</span>
+</span><span class='line'>        <span class="ni">&amp;lt;</span>excludes<span class="ni">&amp;gt;</span>
+</span><span class='line'>            <span class="ni">&amp;lt;</span>exclude<span class="ni">&amp;gt;</span>**/*<span class="ni">&amp;lt;</span>/exclude<span class="ni">&amp;gt;</span>
+</span><span class='line'>        <span class="ni">&amp;lt;</span>/excludes<span class="ni">&amp;gt;</span>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>/resource<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/resources<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;&lt;/build&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Onde <em>directory</em> &eacute; o diret&oacute;rio onde estão os seus resources e <em>targetPath</em> &eacute; o diret&oacute;rio onde vai ser gerado os novos resources antes de empacotar no apk.</p>
+
+<p>Agora &eacute; s&oacute; brincar. Espero ter ajudado.</p>
+]]></content>
+  </entry>
+  
+</feed>

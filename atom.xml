@@ -4,7 +4,7 @@
   <title><![CDATA[Abner Carleto]]></title>
   <link href="http://abnercarleto.github.com/atom.xml" rel="self"/>
   <link href="http://abnercarleto.github.com/"/>
-  <updated>2013-01-20T21:14:28-02:00</updated>
+  <updated>2013-02-26T23:39:00-03:00</updated>
   <id>http://abnercarleto.github.com/</id>
   <author>
     <name><![CDATA[Abner Carleto]]></name>
@@ -12,6 +12,69 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Maven resouces no Android]]></title>
+    <link href="http://abnercarleto.github.com/blog/maven-resouces-no-android/"/>
+    <updated>2013-02-26T22:23:00-03:00</updated>
+    <id>http://abnercarleto.github.com/blog/maven-resouces-no-android</id>
+    <content type="html"><![CDATA[<p>Como muitos sabem é possivel criar projetos para android usando o <a href="http://code.google.com/p/maven-android-plugin/wiki/GettingStarted" title="Maven Android Plugin">maven</a>. Mais quando precisei utilizar o plugin <a href="http://maven.apache.org/plugins/maven-resources-plugin/" title="Maven Resouces Plugin">resources</a> nava funcionou.</p>
+
+<p>Depois de muita pesquisa no google, nada funcionava ainda rsrs. Então conversando com o brother <a href="https://twitter.com/o_lalertom">Nycholas</a> que ja havia passado pelo mesmo problema consegui resolver. :)</p>
+
+<p>Como h&aacute; pouco conteudo vou documentar aqui.</p>
+
+<p>O maven resources por padr&atilde;o considera somente os diret&oacute;rios <em>src/main/resources</em> e <em>src/test/resources</em> e quando compiliado o projeto os arquivos ficam no diretorio <em>classes</em>. Para mudar isso precisamos adicionar as seguintes linhas ao <em>pom.xml</em>:</p>
+
+<figure class='code'><figcaption><span>pom.xml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;build&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;resources&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;resource&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;directory&gt;</span>${project.basedir}/res<span class="nt">&lt;/directory&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;filtering&gt;</span>true<span class="nt">&lt;/filtering&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;targetPath&gt;</span>${project.build.directory}/filtered-res<span class="nt">&lt;/targetPath&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;includes&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;include&gt;</span>**/*<span class="nt">&lt;/include&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/includes&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/resource&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;resource&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;directory&gt;</span>${project.basedir}/res<span class="nt">&lt;/directory&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;filtering&gt;</span>false<span class="nt">&lt;/filtering&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;targetPath&gt;</span>${project.build.directory}/filtered-res<span class="nt">&lt;/targetPath&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;excludes&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;exclude&gt;</span>**/*<span class="nt">&lt;/exclude&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/excludes&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/resource&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/resources&gt;</span>
+</span><span class='line'><span class="nt">&lt;/build&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Onde <em>directory</em> &eacute; o diret&oacute;rio onde estão os seus resources e <em>targetPath</em> &eacute; o diret&oacute;rio onde vai ser gerado os novos resources antes de empacotar no apk.</p>
+
+<p>Agora &eacute; s&oacute; brincar. Espero ter ajudado.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Github pages]]></title>
